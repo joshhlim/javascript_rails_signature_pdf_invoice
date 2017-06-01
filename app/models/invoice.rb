@@ -19,7 +19,6 @@ class Invoice < ActiveRecord::Base
     items = [
       ["Date",            created_at.strftime("%B %d, %Y")],
       ["Account Billed",  "#{user.name} (#{user.email})"],
-      ["Product",         "#{product}"],
       ["Amount",          "$#{amount}"],
       ["Signature",       sig_image]
     ]
