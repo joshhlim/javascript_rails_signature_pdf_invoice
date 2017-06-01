@@ -10,16 +10,20 @@ class InvoicesController < ApplicationController
   # GET /invoices/1
   # GET /invoices/1.json
   def show
+    @invoice = Invoice.find(params[:id])
+    @sig = StringIO.new(Base64.decode64(@invoice.signature.split(',')[1]))
+
     respond_to do |format|
       format.html
       format.json
-      format.pdf {
-        send_data(@invoice.receipt.render,
-                  filename: "#{@invoice.created_at.strftime("%Y-%m-%d")}-stevescoffee-receipt.pdf",
-                  type: "application/pdf",
-                  disposition: :inline
-                  )
-      }
+      format.pdf
+      # format.pdf {
+      #   send_data(@invoice.prawn_document,
+      #             filename: "#{@invoice.created_at.strftime("%Y-%m-%d")}-stevescoffee-receipt.pdf",
+      #             type: "application/pdf",
+      #             disposition: :inline
+      #             )
+      # }
     end
   end
 
@@ -82,7 +86,7 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:product, :amount, :card_type, :card_number, :user_id, :signature)
+      params.require(:invoice).permit(:amount, :user_id, :signature)
     end
 
 end

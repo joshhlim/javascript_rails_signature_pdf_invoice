@@ -1,28 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Product:</strong>
-  <%= @invoice.product %>
-</p>
-
-<p>
   <strong>Amount:</strong>
   <%= number_to_currency(@invoice.amount) %>
-</p>
-
-<p>
-  <strong>Card type:</strong>
-  <%= @invoice.card_type %>
-</p>
-
-<p>
-  <strong>Ends in:</strong>
-  <%= @invoice.card_last4 %>
-</p>
-
-<p>
-  <strong>Purchaser:</strong>
-  <%= @invoice.user.name %>
 </p>
 
 <p>

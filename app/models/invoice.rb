@@ -21,7 +21,6 @@ class Invoice < ActiveRecord::Base
       ["Account Billed",  "#{user.name} (#{user.email})"],
       ["Product",         "#{product}"],
       ["Amount",          "$#{amount}"],
-      ["Charged to",      "#{card_type} (**** **** **** #{card_last4})"],
       ["Signature",       sig_image]
     ]
     items << ["Additional Information", user.additional_information] if user.additional_information?
@@ -31,9 +30,4 @@ class Invoice < ActiveRecord::Base
   def sig_image
     ActionController::Base.helpers.image_tag(signature)
   end
-
-  def card_last4
-    self.card_number[self.card_number.length - 4,4]
-  end
-
 end
