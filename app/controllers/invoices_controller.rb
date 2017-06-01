@@ -1,11 +1,14 @@
 class InvoicesController < ApplicationController
+
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
 
   # GET /invoices
   # GET /invoices.json
+
   def index
     @invoices = Invoice.all
   end
+
 
   # GET /invoices/1
   # GET /invoices/1.json
@@ -24,9 +27,11 @@ class InvoicesController < ApplicationController
   end
 
   # GET /invoices/new
+
   def new
     @invoice = Invoice.new
   end
+
 
   # GET /invoices/1/edit
   def edit
@@ -84,5 +89,3 @@ class InvoicesController < ApplicationController
     def invoice_params
       params.require(:invoice).permit(:product, :amount, :card_type, :card_last4, :user_id, :signature)
     end
-
-end

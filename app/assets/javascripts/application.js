@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+
 //= require signature_pad
 //= require turbolinks
 //= require_tree .
+
 

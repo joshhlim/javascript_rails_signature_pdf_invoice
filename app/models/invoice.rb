@@ -1,5 +1,7 @@
 class Invoice < ActiveRecord::Base
   belongs_to :user
+  validates :user_id, presence: true
+
 
   def receipt
     Receipts::Receipt.new(
@@ -35,5 +37,6 @@ class Invoice < ActiveRecord::Base
   # def card_last4
   #   self.card_number[self.card_number.length - 4,4]
   # end
+
 
 end
