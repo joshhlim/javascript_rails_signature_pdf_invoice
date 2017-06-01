@@ -1,0 +1,50 @@
+<div class="flex-container">
+
+<%= simple_form_for(@invoice) do |f| %>
+  <% if @invoice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+      <ul>
+      <% @invoice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :product %><br>
+    <%= f.text_field :product %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br>
+    <%= f.number_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :card_type, "Card Type" %><br>
+    <%= f.text_field :card_type %>
+  </div>
+  <div class="field">
+    <%= f.label :card_number, "Card Number" %><br>
+    <%= f.text_field :card_number %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id, "Name On Account" %><br>
+    <%= f.text_field :user_id %>
+  </div>
+
+  <%= f.input_field :signature, as: :hidden, class: 'signature_pad_input' %>
+  <div class="signature_pad text-center">
+    <div class="signature_pad_body">
+      <canvas></canvas>
+    </div>
+    <div class="signature_pad_footer">
+      <div class="text-muted">Sign above</div>
+      <button class="signature_pad_clear">Clear</button>
+      <%= f.button :submit, "Save", class: "signature_pad_save" %>
+    </div>
+  </div>
+<% end %>
+
+</div>
