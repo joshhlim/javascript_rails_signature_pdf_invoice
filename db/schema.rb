@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170601221918) do
     t.datetime "updated_at",    null: false
     t.string   "customer"
     t.boolean  "delivered"
-    t.datetime "delivery_date"
+    t.date     "delivery_date"
     t.string   "address"
   end
 
