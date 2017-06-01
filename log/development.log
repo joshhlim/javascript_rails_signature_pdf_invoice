@@ -7846,3 +7846,391 @@ FOREIGN KEY ("user_id")
   [1m[36mInvoice Load (1.0ms)[0m  [1mSELECT "invoices".* FROM "invoices"[0m
   [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "invoices"
   [1m[36mInvoice Load (0.6ms)[0m  [1mSELECT  "invoices".* FROM "invoices"  ORDER BY "invoices"."id" DESC LIMIT 1[0m
+  [1m[36m (2.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.5ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20170531192401)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (3.7ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "name" character varying, "email" character varying, "password_digest" character varying, "additional_information" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170531192401"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateInvoices (20170531192523)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (3.7ms)[0m  [1mCREATE TABLE "invoices" ("id" serial primary key, "product" character varying, "signature" bytea, "amount" float, "card_type" character varying, "card_number" character varying, "user_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.7ms)[0m  CREATE  INDEX  "index_invoices_on_user_id" ON "invoices"  ("user_id")
+  [1m[36m (50.6ms)[0m  [1mALTER TABLE "invoices" ADD CONSTRAINT "fk_rails_3d1522a0d8"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170531192523"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to RemoveCardTypeFromInvoices (20170601190911)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.8ms)[0m  [1mALTER TABLE "invoices" DROP "card_type"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170601190911"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to RemoveCardNumberFromInvoices (20170601190922)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "invoices" DROP "card_number"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170601190922"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to RemoveProductFromInvoices (20170601191619)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "invoices" DROP "product"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170601191619"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddCustomerToInvoices (20170601221701)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "invoices" ADD "customer" character varying[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170601221701"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddDeliveredToInvoices (20170601221730)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "invoices" ADD "delivered" boolean[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170601221730"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddDeliveryDateToInvoices (20170601221831)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "invoices" ADD "delivery_date" date[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170601221831"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddAddressToInvoices (20170601221918)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "invoices" ADD "address" character varying[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170601221918"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (9.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'invoices'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (16.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Peggie Lowe"], ["delivery_date", "2017-06-07"], ["delivered", "f"], ["address", "2065 Schultz Island"], ["created_at", "2017-06-01 22:54:29.326530"], ["updated_at", "2017-06-01 22:54:29.326530"]]
+  [1m[35m (15.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Ms. Lonny Watsica"], ["delivery_date", "2017-06-04"], ["delivered", "f"], ["address", "8624 Beatty Mill"], ["created_at", "2017-06-01 22:54:29.363399"], ["updated_at", "2017-06-01 22:54:29.363399"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Dedrick Swift"], ["delivery_date", "2017-06-15"], ["delivered", "f"], ["address", "101 Bailey Green"], ["created_at", "2017-06-01 22:54:29.365745"], ["updated_at", "2017-06-01 22:54:29.365745"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Dedrick Sauer"], ["delivery_date", "2017-06-11"], ["delivered", "f"], ["address", "5946 Johnston Groves"], ["created_at", "2017-06-01 22:54:29.368025"], ["updated_at", "2017-06-01 22:54:29.368025"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Mrs. Lesly Hettinger"], ["delivery_date", "2017-06-22"], ["delivered", "f"], ["address", "9339 Dandre Cliffs"], ["created_at", "2017-06-01 22:54:29.370340"], ["updated_at", "2017-06-01 22:54:29.370340"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Mrs. Lilla Hoppe"], ["delivery_date", "2017-06-20"], ["delivered", "f"], ["address", "858 Roma Highway"], ["created_at", "2017-06-01 22:54:29.372712"], ["updated_at", "2017-06-01 22:54:29.372712"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Darian Metz"], ["delivery_date", "2017-06-20"], ["delivered", "f"], ["address", "57301 Lesch Skyway"], ["created_at", "2017-06-01 22:54:29.374974"], ["updated_at", "2017-06-01 22:54:29.374974"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Ms. Sydni Blick"], ["delivery_date", "2017-06-26"], ["delivered", "f"], ["address", "4006 Shanon Wells"], ["created_at", "2017-06-01 22:54:29.377203"], ["updated_at", "2017-06-01 22:54:29.377203"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Keenan Cormier MD"], ["delivery_date", "2017-06-17"], ["delivered", "f"], ["address", "24542 Henri Cove"], ["created_at", "2017-06-01 22:54:29.379196"], ["updated_at", "2017-06-01 22:54:29.379196"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Miss Alvena Oberbrunner"], ["delivery_date", "2017-06-02"], ["delivered", "f"], ["address", "31760 McCullough Extensions"], ["created_at", "2017-06-01 22:54:29.381126"], ["updated_at", "2017-06-01 22:54:29.381126"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Jaylin Ritchie"], ["delivery_date", "2017-06-18"], ["delivered", "f"], ["address", "8098 Zoila Motorway"], ["created_at", "2017-06-01 22:54:29.382974"], ["updated_at", "2017-06-01 22:54:29.382974"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Theodora Powlowski"], ["delivery_date", "2017-06-01"], ["delivered", "f"], ["address", "112 Toy Falls"], ["created_at", "2017-06-01 22:54:29.384821"], ["updated_at", "2017-06-01 22:54:29.384821"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Corrine Wolff"], ["delivery_date", "2017-06-15"], ["delivered", "f"], ["address", "57018 Kamron Inlet"], ["created_at", "2017-06-01 22:54:29.386673"], ["updated_at", "2017-06-01 22:54:29.386673"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Mariah Goodwin"], ["delivery_date", "2017-06-10"], ["delivered", "f"], ["address", "7084 Donna Mount"], ["created_at", "2017-06-01 22:54:29.388541"], ["updated_at", "2017-06-01 22:54:29.388541"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Ezra Hessel"], ["delivery_date", "2017-06-12"], ["delivered", "f"], ["address", "4938 Walker Village"], ["created_at", "2017-06-01 22:54:29.390354"], ["updated_at", "2017-06-01 22:54:29.390354"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Joe Howe MD"], ["delivery_date", "2017-06-25"], ["delivered", "f"], ["address", "3530 Walter Springs"], ["created_at", "2017-06-01 22:54:29.392283"], ["updated_at", "2017-06-01 22:54:29.392283"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Ali Stoltenberg"], ["delivery_date", "2017-06-03"], ["delivered", "f"], ["address", "3012 Kovacek Fall"], ["created_at", "2017-06-01 22:54:29.394162"], ["updated_at", "2017-06-01 22:54:29.394162"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Mr. Melba Kozey"], ["delivery_date", "2017-06-13"], ["delivered", "f"], ["address", "828 Dooley Burg"], ["created_at", "2017-06-01 22:54:29.396061"], ["updated_at", "2017-06-01 22:54:29.396061"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Jermaine Cremin"], ["delivery_date", "2017-06-17"], ["delivered", "f"], ["address", "42329 Harvey View"], ["created_at", "2017-06-01 22:54:29.398131"], ["updated_at", "2017-06-01 22:54:29.398131"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Mrs. Noemi Quigley"], ["delivery_date", "2017-06-30"], ["delivered", "f"], ["address", "47431 Isobel Glens"], ["created_at", "2017-06-01 22:54:29.400042"], ["updated_at", "2017-06-01 22:54:29.400042"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Kaden Spencer"], ["delivery_date", "2017-06-27"], ["delivered", "f"], ["address", "87466 Lueilwitz Rue"], ["created_at", "2017-06-01 22:54:29.402151"], ["updated_at", "2017-06-01 22:54:29.402151"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Mrs. Loy Lind"], ["delivery_date", "2017-06-19"], ["delivered", "f"], ["address", "67478 McGlynn Crest"], ["created_at", "2017-06-01 22:54:29.404065"], ["updated_at", "2017-06-01 22:54:29.404065"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Eulah Schuppe PhD"], ["delivery_date", "2017-06-30"], ["delivered", "f"], ["address", "5838 Modesto Haven"], ["created_at", "2017-06-01 22:54:29.405992"], ["updated_at", "2017-06-01 22:54:29.405992"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Mr. Miles Greenfelder"], ["delivery_date", "2017-06-06"], ["delivered", "f"], ["address", "4193 Melvina Field"], ["created_at", "2017-06-01 22:54:29.407836"], ["updated_at", "2017-06-01 22:54:29.407836"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Miss Rose Lang"], ["delivery_date", "2017-06-12"], ["delivered", "f"], ["address", "5719 Morar Squares"], ["created_at", "2017-06-01 22:54:29.409762"], ["updated_at", "2017-06-01 22:54:29.409762"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Katelin Altenwerth"], ["delivery_date", "2017-06-16"], ["delivered", "f"], ["address", "39863 Boyle Forge"], ["created_at", "2017-06-01 22:54:29.411815"], ["updated_at", "2017-06-01 22:54:29.411815"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "May Leannon DDS"], ["delivery_date", "2017-06-25"], ["delivered", "f"], ["address", "1809 Hillary Burg"], ["created_at", "2017-06-01 22:54:29.413856"], ["updated_at", "2017-06-01 22:54:29.413856"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Easton Gaylord MD"], ["delivery_date", "2017-06-22"], ["delivered", "f"], ["address", "93669 Sedrick Mount"], ["created_at", "2017-06-01 22:54:29.415807"], ["updated_at", "2017-06-01 22:54:29.415807"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Rosie Kuhic DVM"], ["delivery_date", "2017-06-06"], ["delivered", "f"], ["address", "3547 Curt Port"], ["created_at", "2017-06-01 22:54:29.417632"], ["updated_at", "2017-06-01 22:54:29.417632"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Eliseo Weber"], ["delivery_date", "2017-06-18"], ["delivered", "f"], ["address", "40105 Bogisich Groves"], ["created_at", "2017-06-01 22:54:29.419474"], ["updated_at", "2017-06-01 22:54:29.419474"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Ms. Justyn Nader"], ["delivery_date", "2017-06-11"], ["delivered", "f"], ["address", "4086 Hintz Isle"], ["created_at", "2017-06-01 22:54:29.421329"], ["updated_at", "2017-06-01 22:54:29.421329"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Colton Okuneva"], ["delivery_date", "2017-06-17"], ["delivered", "f"], ["address", "5141 Herman Plains"], ["created_at", "2017-06-01 22:54:29.423182"], ["updated_at", "2017-06-01 22:54:29.423182"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Mr. Kim Turner"], ["delivery_date", "2017-06-05"], ["delivered", "f"], ["address", "419 Jackie Corner"], ["created_at", "2017-06-01 22:54:29.425040"], ["updated_at", "2017-06-01 22:54:29.425040"]]
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Elna Bergstrom"], ["delivery_date", "2017-06-11"], ["delivered", "f"], ["address", "6636 Balistreri Manor"], ["created_at", "2017-06-01 22:54:29.426807"], ["updated_at", "2017-06-01 22:54:29.426807"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Imani Okuneva"], ["delivery_date", "2017-06-18"], ["delivered", "f"], ["address", "69027 Wyman Meadow"], ["created_at", "2017-06-01 22:54:29.428678"], ["updated_at", "2017-06-01 22:54:29.428678"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Myles Tromp"], ["delivery_date", "2017-06-22"], ["delivered", "f"], ["address", "47493 Addie Fords"], ["created_at", "2017-06-01 22:54:29.430492"], ["updated_at", "2017-06-01 22:54:29.430492"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Caleigh Medhurst"], ["delivery_date", "2017-06-09"], ["delivered", "f"], ["address", "67885 Matt Forks"], ["created_at", "2017-06-01 22:54:29.432339"], ["updated_at", "2017-06-01 22:54:29.432339"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Buck Lakin"], ["delivery_date", "2017-06-28"], ["delivered", "f"], ["address", "256 Bode Ferry"], ["created_at", "2017-06-01 22:54:29.434189"], ["updated_at", "2017-06-01 22:54:29.434189"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Lacy Hintz III"], ["delivery_date", "2017-06-03"], ["delivered", "f"], ["address", "82377 Lorna Turnpike"], ["created_at", "2017-06-01 22:54:29.436037"], ["updated_at", "2017-06-01 22:54:29.436037"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Aisha Kemmer"], ["delivery_date", "2017-06-17"], ["delivered", "f"], ["address", "177 Bartoletti Walk"], ["created_at", "2017-06-01 22:54:29.437883"], ["updated_at", "2017-06-01 22:54:29.437883"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Jalen Rau"], ["delivery_date", "2017-07-01"], ["delivered", "f"], ["address", "490 Joseph Creek"], ["created_at", "2017-06-01 22:54:29.439714"], ["updated_at", "2017-06-01 22:54:29.439714"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Lorine O'Connell"], ["delivery_date", "2017-06-12"], ["delivered", "f"], ["address", "89563 Liliane Valley"], ["created_at", "2017-06-01 22:54:29.441558"], ["updated_at", "2017-06-01 22:54:29.441558"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Zula Lowe"], ["delivery_date", "2017-06-24"], ["delivered", "f"], ["address", "711 Mueller Radial"], ["created_at", "2017-06-01 22:54:29.443391"], ["updated_at", "2017-06-01 22:54:29.443391"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Ivory Fay"], ["delivery_date", "2017-06-25"], ["delivered", "f"], ["address", "4456 Baumbach Turnpike"], ["created_at", "2017-06-01 22:54:29.445245"], ["updated_at", "2017-06-01 22:54:29.445245"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Benny Dooley"], ["delivery_date", "2017-06-20"], ["delivered", "f"], ["address", "3937 Dixie Mission"], ["created_at", "2017-06-01 22:54:29.447074"], ["updated_at", "2017-06-01 22:54:29.447074"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Miss Keanu Kautzer"], ["delivery_date", "2017-06-19"], ["delivered", "f"], ["address", "400 Homenick Vista"], ["created_at", "2017-06-01 22:54:29.448960"], ["updated_at", "2017-06-01 22:54:29.448960"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Llewellyn Huel"], ["delivery_date", "2017-06-29"], ["delivered", "f"], ["address", "79084 Aletha Gardens"], ["created_at", "2017-06-01 22:54:29.450800"], ["updated_at", "2017-06-01 22:54:29.450800"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Virginia Metz II"], ["delivery_date", "2017-06-13"], ["delivered", "f"], ["address", "46207 Jolie Mill"], ["created_at", "2017-06-01 22:54:29.452674"], ["updated_at", "2017-06-01 22:54:29.452674"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["amount", 89.95], ["customer", "Priscilla Littel"], ["delivery_date", "2017-06-18"], ["delivered", "f"], ["address", "93679 Quitzon Meadow"], ["created_at", "2017-06-01 22:54:29.454506"], ["updated_at", "2017-06-01 22:54:29.454506"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "invoices" ("amount", "customer", "delivery_date", "delivered", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["amount", 89.95], ["customer", "Chasity McClure"], ["delivery_date", "2017-06-22"], ["delivered", "f"], ["address", "51717 Schmidt Burgs"], ["created_at", "2017-06-01 22:54:29.456365"], ["updated_at", "2017-06-01 22:54:29.456365"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/" for ::1 at 2017-06-01 16:08:21 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/railties-4.2.4/lib/rails/templates/rails/welcome/index.html.erb (1.3ms)
+Completed 200 OK in 14ms (Views: 6.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/welcome" for ::1 at 2017-06-01 16:08:27 -0700
+
+ActionController::RoutingError (No route matches [GET] "/welcome"):
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.8) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.8) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.8) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  rack (1.6.8) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.8) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (6.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (97.5ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (446.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (2.0ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (520.9ms)
+
+
+Started GET "/welcome" for ::1 at 2017-06-01 16:10:14 -0700
+
+ActionController::RoutingError (No route matches [GET] "/welcome"):
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.8) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.8) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.8) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  rack (1.6.8) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.8) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (88.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (55.2ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/apprentice/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (124.3ms)
+
+
+Started GET "/" for ::1 at 2017-06-01 16:10:17 -0700
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 785ms (Views: 784.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/scaffolds.self-ce66639078a5fbd7caa29b1c2554bbd3ef3e2d741f2977f42f2577d12febafbd.css?body=1" for ::1 at 2017-06-01 16:10:17 -0700
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-06-01 16:10:17 -0700
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2017-06-01 16:10:17 -0700
+
+
+Started GET "/assets/invoices.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-06-01 16:10:17 -0700
+
+
+Started GET "/assets/application.self-2c04dd971feb8088078daceee90f3f72f051ba02a92cfa451d6cc9a847ea0feb.css?body=1" for ::1 at 2017-06-01 16:10:17 -0700
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2017-06-01 16:10:17 -0700
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2017-06-01 16:10:17 -0700
+
+
+Started GET "/assets/signature_pad.self-5c8f6c570ae12a910a7750b4a8ff7eef65cc0a53f6287f9f528b2e2a68dc44c1.js?body=1" for ::1 at 2017-06-01 16:10:17 -0700
+
+
+Started GET "/assets/turbolinks.self-1d1fddf91adc38ac2045c51f0a3e05ca97d07d24d15a4dcbf705009106489e69.js?body=1" for ::1 at 2017-06-01 16:10:17 -0700
+
+
+Started GET "/assets/invoices.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-06-01 16:10:17 -0700
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-06-01 16:10:17 -0700
+
+
+Started GET "/assets/signature.self-376f8bac96434fb3396632faf6066e4b5db6d4f7501183869664f077bc5da487.js?body=1" for ::1 at 2017-06-01 16:10:17 -0700
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2017-06-01 16:10:17 -0700
+
+
+Started GET "/assets/application.self-7862a8a8b42407b4741a1adeeea35f0d13ddc4f702ec532adb0674491d296495.js?body=1" for ::1 at 2017-06-01 16:10:18 -0700
+
+
+Started GET "/" for ::1 at 2017-06-01 16:10:27 -0700
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 22ms (Views: 21.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2017-06-01 16:14:32 -0700
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 25ms (Views: 24.9ms | ActiveRecord: 0.0ms)
