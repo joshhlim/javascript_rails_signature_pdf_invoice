@@ -12,14 +12,16 @@ $(document).on('turbolinks:load', function() {
     canvas.width = canvas.offsetWidth;
     window.onresize = resizeCanvas(canvas);
     resizeCanvas(canvas);
-    signature_pad = new SignaturePad(canvas);
+    signature_pad = new SignaturePad(canvas, {
+      backgroundColor: 'rgb(255,255,255)'
+    });
     $('.signature_pad_clear').click(function() { signature_pad.clear() });
     $('.signature_pad_save').click(function(event) {
       if (signature_pad.isEmpty()) {
         event.preventDefault()
         alert('You must sign to proceed');
       }  else {
-        $('.signature_pad_input').val(signature_pad.toDataURL());
+        $('.signature_pad_input').val(signature_pad.toDataURL("image/jpeg"));
       }
     })
   }

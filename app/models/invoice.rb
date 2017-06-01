@@ -36,4 +36,39 @@ class Invoice < ActiveRecord::Base
     self.card_number[self.card_number.length - 4,4]
   end
 
+  # def prawn_receipt
+  #   id = self.id
+  #   created_at = self.created_at
+  #   client_name = self.user.name
+  #   product = self.product
+  #   amount = self.amount
+  #   type = self.card_type
+  #   last_4 = self.card_last4
+  #   sig = self.signature
+  #   puts "sig is #{sig}, class is #{sig.class}"
+  #   Prawn::Document.generate("invoice#{self.id}.pdf") do 
+  #     text "INVOICE FOR CHARGE \##{id}"
+  #     move_down 50
+  #     text "Date                    #{id}"
+  #     stroke_horizontal_rule
+  #     move_down 10
+  #     text "Account Billed           #{created_at}"
+  #     stroke_horizontal_rule
+  #     move_down 10
+  #     text "Product                  #{client_name}"
+  #     stroke_horizontal_rule
+  #     move_down 10
+  #     text "Amount                   #{amount}"
+  #     stroke_horizontal_rule
+  #     move_down 10
+  #     text "Charged to              #{type}(**** **** **** #{last_4})"
+  #     stroke_horizontal_rule
+  #     move_down 20
+  #     # temp = Tempfile.new('sigimg')
+  #     # temp.write Base64.decode64(sig)
+  #     # temp.close
+  #     # # image_data = StringIO.new(Base64.decode64(self.signature))
+  #     # image temp.path
+  #   end
+  # end
 end
