@@ -25,7 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'prawn'
 gem 'receipts'
 gem 'simple_form'
-
+gem 'prawn-rails'
+gem 'faker'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 

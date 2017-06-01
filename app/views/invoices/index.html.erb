@@ -5,9 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Product</th>
       <th>Amount</th>
-      <th>Card</th>
       <th>Ends in</th>
       <th>Purchaser</th>
       <th>Purchase Date</th>
@@ -18,10 +16,7 @@
   <tbody>
     <% @invoices.each do |invoice| %>
       <tr>
-        <td><%= invoice.product %></td>
         <td><%= number_to_currency(invoice.amount) %></td>
-        <td><%= invoice.card_type %></td>
-        <td><%= invoice.card_last4 %></td>
         <td><%= invoice.user.name %></td>
         <td><%= invoice.created_at.strftime("%B %d, %Y") %></td>
         <td><%= link_to 'Show', invoice %></td>
