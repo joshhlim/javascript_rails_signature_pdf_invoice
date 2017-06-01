@@ -16,16 +16,13 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       format.html
       format.json
+      format.pdf
       # format.pdf {
       #   send_data(@invoice.prawn_document,
       #             filename: "#{@invoice.created_at.strftime("%Y-%m-%d")}-stevescoffee-receipt.pdf",
       #             type: "application/pdf",
       #             disposition: :inline
       #             )
-      # }
-      format.pdf #{
-      #   send_data(
-      #     disposition: :inline)
       # }
     end
   end
@@ -89,7 +86,7 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:product, :amount, :card_type, :card_number, :user_id, :signature)
+      params.require(:invoice).permit(:amount, :user_id, :signature)
     end
 
 end
