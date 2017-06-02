@@ -106,21 +106,27 @@ body {
   }
 
   img {
-    max-width: 100%;
+    max-width: 45%;
     height: auto;
+  }
+
+  .show{
+    text-align: center;
   }
 
   .text-muted{
     font-size: 1.5em;
+    height: 30px;
   }
 
   .signature_pad_save, .signature_pad_clear{
-    margin-left: 10%;
+    margin-left: 5%;
     font-size: 200%;
   }
 
   .search_button, .dropdown-form{
     font-size: 140%;
+    text-align: center;
   }
 
   .signature_pad_footer{
@@ -147,5 +153,9 @@ body {
 
   .invoices-table td{
     font-size: 1.1em;
+  }
+
+  .invoices-table{
+    text-align: center;
   }
 }
