@@ -1,11 +1,13 @@
 
 <p id="notice"><%= notice %></p>
 
-<% if @day %>
-  <h1 class="center">Listing Invoices by <%= @day %></h1>
-<% else %>
-  <h1 class="center">Listing Invoices for Week of <%= Time.now.beginning_of_week.strftime("%B %d, %Y") %></h1>
-<% end %>
+<div class='invoices-header'>
+  <% if @day %>
+    <h1 class="center">Listing Invoices for <%= @day %></h1>
+  <% else %>
+    <h1 class="center">Listing Invoices for Week of <%= Time.now.beginning_of_week.strftime("%B %d, %Y") %></h1>
+  <% end %>
+</div>
 
 <div class="dropdown-form center">
   <%= form_tag invoices_path, id: "hi", method: :get do %>
@@ -56,5 +58,4 @@
     </tbody>
   </table>
 </div>
-
 
