@@ -4,14 +4,19 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
+    if params[:day]
+      @day = params[:day]
+      @invoices = set_invoices(@day)
+    else
+      @invoices = Invoice.not_delivered.this_week
+    end
   end
 
   # GET /invoices/1
   # GET /invoices/1.json
   def show
     @invoice = Invoice.find(params[:id])
-    if @invoice.signature 
+    if @invoice.signature
       @sig = StringIO.new(Base64.decode64(@invoice.signature.split(',')[1]))
     end
     respond_to do |format|
@@ -93,5 +98,26 @@ class InvoicesController < ApplicationController
     def signature_params
       params.require(:invoice).permit(:signature)
     end
+
+    def set_invoices(selection)
+      case selection
+        when "Current Week"
+          Invoice.not_delivered.this_week
+        when "Monday"
+          Invoice.not_delivered.this_monday
+        when "Tuesday"
+          Invoice.not_delivered.this_tuesday
+        when "Wednesday"
+          Invoice.not_delivered.this_wednesday
+        when "Thursday"
+          Invoice.not_delivered.this_thursday
+        when "Friday"
+          Invoice.not_delivered.this_friday
+        when "All Invoices"
+          Invoice.all
+        when "Undelivered"
+          Invoice.not_delivered
+        end
+      end
 
 end
