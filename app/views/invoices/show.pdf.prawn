@@ -22,8 +22,12 @@ logopath = "#{Rails.root.join("app/assets/images/stevescoffee.png")}"
   pdf.text "Signature:"
   pdf.move_down 20
 
+
   if @sig
     pdf.image(@sig, :width => 400, :height => 100)
   end
+
+
+  pdf.text "<u><link href='/invoices/#{@invoice.id}'>Back</link></u>", :inline_format => true
 
 end
