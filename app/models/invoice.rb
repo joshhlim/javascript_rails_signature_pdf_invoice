@@ -37,4 +37,5 @@ class Invoice < ActiveRecord::Base
   def sig_image
     ActionController::Base.helpers.image_tag(signature)
   end
+
 end
