@@ -18,6 +18,7 @@ html, body {
 }
 body {
     margin: 0;
+    font: 22px Arial;
 }
 .flex-container {
   margin-top: 50px;
@@ -198,8 +199,21 @@ body {
   border-right: 1px solid #333333;
 }
 
+.signature_pad_clear, .signature_pad_save {
+  font: bold 25px Arial;
+  word-spacing: 5px;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-left: 1px solid #CCCCCC;
+  border-bottom: 1px solid #333333;
+  border-right: 1px solid #333333;
+}
+
 #details {
-  font: 25px Arial;
+  font: 22px Arial;
 }
 
 div.dropdown-form * {

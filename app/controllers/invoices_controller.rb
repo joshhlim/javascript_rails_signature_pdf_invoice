@@ -8,7 +8,7 @@ class InvoicesController < ApplicationController
       @day = params[:day]
       @invoices = set_invoices(@day)
     else
-      @invoices = Invoice.not_delivered.this_week
+      @invoices = Invoice.not_delivered.this_week.order(delivery_date: :asc)
     end
   end
 
@@ -107,22 +107,24 @@ class InvoicesController < ApplicationController
 
     def set_invoices(selection)
       case selection
+        when "List By:"
+          Invoice.not_delivered.this_week.order(delivery_date: :asc)
         when "Current Week"
-          Invoice.not_delivered.this_week
+          Invoice.not_delivered.this_week.order(delivery_date: :asc)
         when "Monday"
-          Invoice.not_delivered.this_monday
+          Invoice.not_delivered.this_monday.order(delivery_date: :asc)
         when "Tuesday"
-          Invoice.not_delivered.this_tuesday
+          Invoice.not_delivered.this_tuesday.order(delivery_date: :asc)
         when "Wednesday"
-          Invoice.not_delivered.this_wednesday
+          Invoice.not_delivered.this_wednesday.order(delivery_date: :asc)
         when "Thursday"
-          Invoice.not_delivered.this_thursday
+          Invoice.not_delivered.this_thursday.order(delivery_date: :asc)
         when "Friday"
-          Invoice.not_delivered.this_friday
+          Invoice.not_delivered.this_friday.order(delivery_date: :asc)
         when "All Invoices"
-          Invoice.all
+          Invoice.all.order(:id)
         when "Undelivered"
-          Invoice.not_delivered
+          Invoice.not_delivered.order(delivery_date: :asc)
         end
       end
 end

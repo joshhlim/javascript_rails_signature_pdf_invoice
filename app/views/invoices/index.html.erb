@@ -3,7 +3,11 @@
 
 <div class='invoices-header'>
   <% if @day %>
-    <h1 class="center">Listing Invoices for <%= @day %></h1>
+    <% if @day == "Current Week" %>
+      <h1 class="center">Listing Invoices for Week of <%= Time.now.beginning_of_week.strftime("%B %d, %Y") %></h1>
+    <% else %>
+      <h1 class="center">Listing Invoices for <%= @day %></h1>
+    <% end %>
   <% else %>
     <h1 class="center">Listing Invoices for Week of <%= Time.now.beginning_of_week.strftime("%B %d, %Y") %></h1>
   <% end %>

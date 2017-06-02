@@ -15,19 +15,19 @@
     </div>
   <% end %>
 
-  <p>
+  <p id="details">
     <strong>Customer:</strong>
     <%= @invoice.customer %>
   </p>
-  <p>
+  <p id="details">
     <strong>Amount:</strong>
     <%= number_to_currency(@invoice.amount) %>
   </p>
-  <p>
+  <p id="details">
     <strong>Delivery Date:</strong>
     <%= @invoice.delivery_date.strftime("%B %d, %Y") %>
   </p>
-  <p>
+  <p id="details">
     <strong>Delivery Address:</strong>
     <%= @invoice.address %>
   </p>
@@ -48,8 +48,8 @@
 </div>
 
 
-<div class="center">
+<div class="center" id="nav-bar">
 <%= link_to 'Show', @invoice %> |
-<%= link_to 'Back', :back %> | 
+<%= link_to 'Back', :back %> |
 <%= link_to 'Home', invoices_path %>
 </div>

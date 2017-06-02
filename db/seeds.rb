@@ -7,6 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'faker'
 require 'bcrypt'
-50.times do 
-  Invoice.create(amount: 89.95, customer: Faker::Name.name, delivery_date: Faker::Date.between(Date.today, 1.month.from_now), delivered: false, address: Faker::Address.street_address)
+300.times do
+  Invoice.create(amount: Faker::Number.decimal(2), customer: Faker::Name.name, delivery_date: Faker::Date.between(Date.today - 5.days, 1.month.from_now), delivered: false, address: Faker::Address.street_address)
 end
