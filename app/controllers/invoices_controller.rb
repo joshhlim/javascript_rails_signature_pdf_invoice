@@ -4,7 +4,7 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    puts params
+    puts "params are #{params}"
     if params[:day]
       @invoices = set_invoices(params[:day])
     else
