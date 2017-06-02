@@ -1,39 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<h1 class="center">Invoice #<%= @invoice.id %></h1>
+<div class='show'>
+  <h1 class="center">Invoice #<%= @invoice.id %></h1>
 
-<p class="center" id="details">
-	<strong>Customer: </strong>  
-	<%= @invoice.customer %>
-</p>
-<p class="center" id="details">
-  <strong>Amount: </strong>
-  <%= number_to_currency(@invoice.amount) %>
-</p>
-<p class="center" id="details">
-	<strong>Delivery Date: </strong>
-	<%= @invoice.delivery_date.strftime("%B %d, %Y") %>
-</p>
-<p class="center" id="details">
-  <strong>Delivery Address: </strong>
-  <%= @invoice.address %>
-</p>
-<p class="center">
-	<% if @invoice.signature %>
-	<%= image_tag @invoice.signature %>
-	<% end %>
-</p>
-<div class="center" id="nav-bar">
-<% if !@invoice.signature %>
-<%= link_to 'Sign For', edit_invoice_path(@invoice) %> 
-<% end %>
-</div> |
-<div class="center" id="nav-bar">
-<%= link_to 'PDF Invoice', "/invoices/#{@invoice.id}.pdf" %>
-</div> | 
-<div class="center" id="nav-bar">
-<%= link_to 'Back', :back %>
-</div> | 
-<div class="center" id="nav-bar">  
-<%= link_to 'Home', invoices_path %>
+  <p class="center" id="details">
+  	<strong>Customer: </strong>
+  	<%= @invoice.customer %>
+  </p>
+  <p class="center" id="details">
+    <strong>Amount: </strong>
+    <%= number_to_currency(@invoice.amount) %>
+  </p>
+  <p class="center" id="details">
+  	<strong>Delivery Date: </strong>
+  	<%= @invoice.delivery_date.strftime("%B %d, %Y") %>
+  </p>
+  <p class="center" id="details">
+    <strong>Delivery Address: </strong>
+    <%= @invoice.address %>
+  </p>
+  <p class="center">
+  	<% if @invoice.signature %>
+  	<%= image_tag @invoice.signature %>
+  	<% end %>
+  </p>
+  <div class="center" id="nav-bar">
+  <% if !@invoice.signature %>
+  <%= link_to 'Sign For', edit_invoice_path(@invoice) %>
+  <% end %>
+  </div> |
+  <div class="center" id="nav-bar">
+  <%= link_to 'PDF Invoice', "/invoices/#{@invoice.id}.pdf" %>
+  </div> |
+  <div class="center" id="nav-bar">
+  <%= link_to 'Back', :back %>
+  </div> |
+  <div class="center" id="nav-bar">
+  <%= link_to 'Home', invoices_path %>
 </div>

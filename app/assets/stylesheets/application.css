@@ -20,8 +20,19 @@ body {
     margin: 0;
 }
 .flex-container {
-    height: 90%;
-    padding: 0;
+  margin-top: 50px;
+    padding: 50px;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex-column {
+    padding: 10px;
     margin: 0;
     display: -webkit-box;
     display: -moz-box;
@@ -62,15 +73,115 @@ body {
   h1 {
     font-size: 1.2em;
   }
+
+  h1.center{
+    font-size: 2em;
+  }
+
+  .search_button, .dropdown-form{
+    font-size: 180%;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  td{
+    font-size: 1.2em;
+  }
+
+  .invoices-table a {
+    font-size: 1.5em;
+  }
+
+  .signature_pad_body canvas{
+    height: 100vh;
+    width: 100vw;
+    margin-left: 40%;
+  }
+
+  .edit_invoice p{
+   color: white;
+  }
 }
 
 @media only screen and (max-height: 700px) and (orientation: landscape) {
+  a{
+    font-size: 2em;
+  }
+
+  p{
+    font-size: 1.5em;
+  }
+
+  img {
+    max-width: 45%;
+    height: auto;
+  }
+
+  .show{
+    text-align: center;
+  }
+
+  .text-muted{
+    font-size: 1.5em;
+    height: 30px;
+  }
+
   .signature_pad_save, .signature_pad_clear{
-    margin-left: 10%;
+    margin-left: 5%;
     font-size: 200%;
   }
+
+  .search_button, .dropdown-form{
+    font-size: 140%;
+    text-align: center;
+  }
+
   .signature_pad_footer{
     text-align: center;
+  }
+
+  .signature_pad_body canvas{
+    height: 45vh;
+    width: 80vw;
+    margin-left: 15%;
+  }
+
+  .edit_invoice p{
+   color: white;
+  }
+
+  .center a{
+    font-size: 200%;
+  }
+
+  .invoices-table a {
+    font-size: 1.3em;
+  }
+
+  .invoices-table td{
+    font-size: 1.3em;
+  }
+
+  .invoices-table{
+    text-align: center;
+  }
+
+  .new-invoice{
+    text-align: center;
+  }
+
+  .invoices-header{
+    text-align: center;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
   }
 }
 
@@ -90,4 +201,29 @@ body {
 #details {
   font: 25px Arial;
 
+}
+
+div.dropdown-form * {
+  padding: 10px 10px;
+}
+
+td, th {
+  padding: 5px 20px;
+  text-align: center;
+}
+
+tr:hover {
+  background-color: tan;
+}
+
+.field {
+  padding-top: 10px
+}
+
+.field:hover {
+  background-color: beige;
+}
+
+a:link {
+  text-decoration: none;
 }

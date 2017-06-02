@@ -6,7 +6,7 @@ logopath = "#{Rails.root.join("app/assets/images/stevescoffee.png")}"
 # Displays the image in your PDF. Dimensions are optional.
 
   pdf.image logopath, :width => 280, :height => 70
-  pdf.move_down 50
+  pdf.move_down 25
   pdf.text "Invoice:                     \##{@invoice.id}"
   pdf.move_down 25
   pdf.text "Customer:                 #{@invoice.customer}"
@@ -20,14 +20,14 @@ logopath = "#{Rails.root.join("app/assets/images/stevescoffee.png")}"
   pdf.text "Delivery Address:      #{@invoice.address}"
   pdf.move_down 25
   pdf.text "Signature:"
-  pdf.move_down 20
+  pdf.move_down 1
 
 
   if @sig
     pdf.image(@sig, :width => 400, :height => 100)
   end
 
-
+  pdf.move_down 25
   pdf.text "<u><link href='/invoices/#{@invoice.id}'>Back</link></u>", :inline_format => true
 
 end
