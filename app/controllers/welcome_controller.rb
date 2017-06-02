@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    # @invoices = Invoice.insert class method here
+    @invoices = Invoice.this_week.not_delivered
     puts "***************\n\n"
     puts params
   end

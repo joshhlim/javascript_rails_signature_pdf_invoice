@@ -1,0 +1,254 @@
+
+
+Started GET "/invoices" for 127.0.0.1 at 2017-06-01 16:53:34 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by InvoicesController#index as HTML
+  [1m[35mInvoice Load (4.0ms)[0m  SELECT "invoices".* FROM "invoices"
+  Rendered invoices/index.html.erb within layouts/application (880.0ms)
+Completed 500 Internal Server Error in 932ms (ActiveRecord: 11.5ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    17:     <% @invoices.each do |invoice| %>
+    18:       <tr>
+    19:         <td><%= number_to_currency(invoice.amount) %></td>
+    20:         <td><%= invoice.user.name %></td>
+    21:         <td><%= invoice.created_at.strftime("%B %d, %Y") %></td>
+    22:         <td><%= link_to 'Show', invoice %></td>
+    23:         <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
+  app/views/invoices/index.html.erb:20:in `block in _app_views_invoices_index_html_erb___1177657664917278448_47335182127280'
+  app/views/invoices/index.html.erb:17:in `_app_views_invoices_index_html_erb___1177657664917278448_47335182127280'
+
+
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.3ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (39.0ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (31.6ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (58.3ms)
+
+
+Started GET "/invoices/new" for 127.0.0.1 at 2017-06-01 16:53:39 -0700
+Processing by InvoicesController#new as HTML
+  Rendered invoices/_form.html.erb (68.0ms)
+  Rendered invoices/new.html.erb within layouts/application (68.9ms)
+Completed 200 OK in 589ms (Views: 588.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2017-06-01 16:53:39 -0700
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2017-06-01 16:53:39 -0700
+
+
+Started POST "/invoices" for 127.0.0.1 at 2017-06-01 16:53:51 -0700
+Processing by InvoicesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vS5yxnHLvo6R84jTRFZMcIOBCuFzFWbZiUPx2pWLt2ST1phpaf5Sbi0bJ/glNYtGmsxn8mapFc0IIBdY6aGKlA==", "invoice"=>{"amount"=>"34.00", "user_id"=>"Billy Bob", "signature"=>"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCAFqA3EDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9U6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoor4g+M//BXD9mz4W6xqnhfw7pviPxprOlXMlnMLC2W3sxNGzK6+fMQSAy43JGwPUEigD7for8ffFH/Ba342a5qi2fww+CfhPT1uJBFbwalLd6pcSEnAA8loAWJxgBT+Nd54L/a6/wCCtXxAZZPDf7L2kCKcDy5NR8NXenQkYPKyXd3GpB9ckcD8QD9RqK/N+6+Mv/BZbw0Bquq/s4+DNQtkPzW8P2W5Lcf3LbUDJ2zx3/Kq7f8ABVL49/DmIr8eP2IvE+jLD/x8X0TXdjEuPvMqXFsyle4Pm49znNAH6UUV8bfC7/grF+yH8QrdV8QeJtV8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afFf48eK7v4r/EW2PmWuo6vCqabozZU7dNsB+5tgCqkSENKSN24EkV79QB5j8G/2dPhj8EFu9Q8Laddah4k1Vf8Aib+J9auWvtY1Mkgnz7qT5tpKg+Wu2MEZCg816dRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUV8w/8FEv2kP+Gcf2cNZ1LRr4QeK/FQbQNA2sRJFNKh825XHIMMW9w3TzPKB+9QB81ven9vn/AIKNW9rCftvwq+AO6bnDQXl+koye4bzrmNR/daGzJ4zg/plXyh/wTS/Z3X4Bfsz6Pcavp4g8UeOAniHWC6gSRrIo+y257gJCVJU/dkkl9a+r6ACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoorn/HXxA8FfDLw1d+MPiB4n0/QdGsl3TXd7MI0Hoo7sx6BVBYngAmgDoK8o+L/7SPgP4TX1v4Sjhv8Axb471JSdL8HeHohd6rdcZDvGDi3h7maUqgGTkkYri5PE/wC0F+0Vutvh9Y3vwh+HtwP+Rn1a1B8SarDnB+w2EgxYowBxNcgyYKssI4avTPhH8C/hn8EdLuLHwHoHlXmoMJdV1i8ma71PVZ+813dSEyTOSSeTtUsdoUcUAeRr8Bvi3+0U66r+1br40XwrI3mQfDHwxfuLQrwQuq36bXvm45ij2QggEb+a+i9B8P6F4V0a08O+GNFsdI0qwiENpY2NukEEEY6KkaAKo9gK0KKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK/J7x1P8A8PCf+Ckun+AoFN/8MfhI8i3n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UUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH//Z"}, "commit"=>"Save"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."name" = $1 LIMIT 1[0m  [["name", "Billy Bob"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (3.3ms)[0m  [1mINSERT INTO "invoices" ("amount", "signature", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["amount", 34.0], ["signature", "<22259 bytes of binary data>"], ["created_at", "2017-06-01 23:53:51.341996"], ["updated_at", "2017-06-01 23:53:51.341996"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/invoices/51
+Completed 302 Found in 27ms (ActiveRecord: 7.8ms)
+
+
+Started GET "/invoices/51" for 127.0.0.1 at 2017-06-01 16:53:51 -0700
+Processing by InvoicesController#show as HTML
+  Parameters: {"id"=>"51"}
+  [1m[36mInvoice Load (0.4ms)[0m  [1mSELECT  "invoices".* FROM "invoices" WHERE "invoices"."id" = $1 LIMIT 1[0m  [["id", 51]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "invoices".* FROM "invoices" WHERE "invoices"."id" = $1 LIMIT 1  [["id", "51"]]
+  Rendered invoices/show.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 59ms (Views: 53.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/invoices/51.pdf" for 127.0.0.1 at 2017-06-01 16:54:01 -0700
+Processing by InvoicesController#show as PDF
+  Parameters: {"id"=>"51"}
+  [1m[36mInvoice Load (0.5ms)[0m  [1mSELECT  "invoices".* FROM "invoices" WHERE "invoices"."id" = $1 LIMIT 1[0m  [["id", 51]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "invoices".* FROM "invoices" WHERE "invoices"."id" = $1 LIMIT 1  [["id", "51"]]
+  Rendered invoices/show.pdf.prawn (145.9ms)
+Completed 200 OK in 164ms (Views: 148.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/invoices/51.pdf" for 127.0.0.1 at 2017-06-01 17:00:13 -0700
+Processing by InvoicesController#show as PDF
+  Parameters: {"id"=>"51"}
+  [1m[36mInvoice Load (3.1ms)[0m  [1mSELECT  "invoices".* FROM "invoices" WHERE "invoices"."id" = $1 LIMIT 1[0m  [["id", 51]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "invoices".* FROM "invoices" WHERE "invoices"."id" = $1 LIMIT 1  [["id", "51"]]
+  Rendered invoices/show.pdf.prawn (14.6ms)
+Completed 200 OK in 46ms (Views: 17.0ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/invoices" for 127.0.0.1 at 2017-06-01 17:01:04 -0700
+Processing by InvoicesController#index as HTML
+  [1m[36mInvoice Load (1.1ms)[0m  [1mSELECT "invoices".* FROM "invoices"[0m
+  Rendered invoices/index.html.erb within layouts/application (23.6ms)
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 2.8ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    17:     <% @invoices.each do |invoice| %>
+    18:       <tr>
+    19:         <td><%= number_to_currency(invoice.amount) %></td>
+    20:         <td><%= invoice.user.name %></td>
+    21:         <td><%= invoice.created_at.strftime("%B %d, %Y") %></td>
+    22:         <td><%= link_to 'Show', invoice %></td>
+    23:         <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
+  app/views/invoices/index.html.erb:20:in `block in _app_views_invoices_index_html_erb___1177657664917278448_47335182127280'
+  app/views/invoices/index.html.erb:17:in `_app_views_invoices_index_html_erb___1177657664917278448_47335182127280'
+
+
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.6ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (22.6ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (7.8ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (53.2ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (95.7ms)
+
+
+Started GET "/invoices" for 127.0.0.1 at 2017-06-01 17:02:08 -0700
+Processing by InvoicesController#index as HTML
+  [1m[35mInvoice Load (0.5ms)[0m  SELECT "invoices".* FROM "invoices"
+  Rendered invoices/index.html.erb within layouts/application (53.6ms)
+Completed 200 OK in 86ms (Views: 84.6ms | ActiveRecord: 0.5ms)
+  [1m[36mInvoice Load (0.6ms)[0m  [1mSELECT "invoices".* FROM "invoices"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2017-06-01 17:04:11 -0700
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 32ms (Views: 31.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-06-01 17:04:46 -0700
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 52ms (Views: 31.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-06-01 17:05:13 -0700
+Processing by WelcomeController#index as HTML
+  [1m[36mInvoice Load (0.2ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-05-29 07:00:00.000000' AND '2017-06-05 06:59:59.999999') AND "invoices"."delivered" = $1[0m  [["delivered", "f"]]
+  Rendered welcome/index.html.erb within layouts/application (14.8ms)
+Completed 200 OK in 61ms (Views: 52.6ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-06-01 17:05:38 -0700
+Processing by WelcomeController#index as HTML
+  [1m[35mInvoice Load (0.3ms)[0m  SELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-05-29 07:00:00.000000' AND '2017-06-05 06:59:59.999999') AND "invoices"."delivered" = $1  [["delivered", "f"]]
+  Rendered welcome/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 39ms (Views: 37.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-06-01 17:06:48 -0700
+Processing by WelcomeController#index as HTML
+  [1m[36mInvoice Load (1.5ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-05-29 07:00:00.000000' AND '2017-06-05 06:59:59.999999') AND "invoices"."delivered" = $1[0m  [["delivered", "f"]]
+  Rendered welcome/index.html.erb within layouts/application (10.2ms)
+Completed 200 OK in 50ms (Views: 36.6ms | ActiveRecord: 9.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-06-01 17:07:13 -0700
+Processing by WelcomeController#index as HTML
+  [1m[35mInvoice Load (2.1ms)[0m  SELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-05-29 07:00:00.000000' AND '2017-06-05 06:59:59.999999') AND "invoices"."delivered" = $1  [["delivered", "f"]]
+  Rendered welcome/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 48ms (Views: 44.0ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-06-01 17:07:51 -0700
+Processing by WelcomeController#index as HTML
+PG::UndefinedColumn: ERROR:  column invoices.desc does not exist
+LINE 1: ...d" = $1  ORDER BY "invoices"."delivery_date" ASC, "invoices"...
+                                                             ^
+: SELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-05-29 07:00:00.000000' AND '2017-06-05 06:59:59.999999') AND "invoices"."delivered" = $1  ORDER BY "invoices"."delivery_date" ASC, "invoices"."desc" ASC
+  Rendered welcome/index.html.erb within layouts/application (13.4ms)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 4.0ms)
+
+ActionView::Template::Error (PG::UndefinedColumn: ERROR:  column invoices.desc does not exist
+LINE 1: ...d" = $1  ORDER BY "invoices"."delivery_date" ASC, "invoices"...
+                                                             ^
+: SELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-05-29 07:00:00.000000' AND '2017-06-05 06:59:59.999999') AND "invoices"."delivered" = $1  ORDER BY "invoices"."delivery_date" ASC, "invoices"."desc" ASC):
+    24:       <th class="invoices-table">Date</th>
+    25:     </tr>
+    26:     <tr>
+    27:       <% @invoices.each do |invoice| %>
+    28:         <td class="invoices-table"><%= invoice.id %></td>
+    29:         <td class="invoices-table"><%= invoice.customer %></td>
+    30:         <td class="invoices-table"><%= invoice.address %></td>
+  app/views/welcome/index.html.erb:27:in `_app_views_welcome_index_html_erb___3950133373515093333_70327373472820'
+
+
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.3ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.9ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (33.0ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (27.3ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.2ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (42.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-06-01 17:23:43 -0700
+Processing by WelcomeController#index as HTML
+  [1m[36mInvoice Load (0.2ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-05-29 07:00:00.000000' AND '2017-06-05 06:59:59.999999') AND "invoices"."delivered" = $1[0m  [["delivered", "f"]]
+  Rendered welcome/index.html.erb within layouts/application (17.2ms)
+Completed 200 OK in 65ms (Views: 50.8ms | ActiveRecord: 6.2ms)
+  [1m[35mInvoice Load (0.6ms)[0m  SELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-06-02 07:00:00.000000' AND '2017-06-03 07:00:00.000000')
+  [1m[36mInvoice Load (0.2ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-06-02 07:00:00.000000' AND '2017-06-03 07:00:00.000000') AND "invoices"."delivered" = $1[0m  [["delivered", "t"]]
+  [1m[35mInvoice Load (0.2ms)[0m  SELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-06-02 07:00:00.000000' AND '2017-06-03 07:00:00.000000') AND "invoices"."delivered" = $1 AND "invoices"."delivered" = $2  [["delivered", "t"], ["delivered", "f"]]
+  [1m[36mInvoice Load (0.4ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-06-02 07:00:00.000000' AND '2017-06-03 07:00:00.000000') AND "invoices"."delivered" = $1[0m  [["delivered", "t"]]
+  [1m[35mInvoice Load (0.3ms)[0m  SELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-06-02 07:00:00.000000' AND '2017-06-03 07:00:00.000000') AND "invoices"."delivered" = $1  [["delivered", "f"]]
+  [1m[36mInvoice Load (0.4ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-05-29 07:00:00.000000' AND '2017-06-05 06:59:59.999999')[0m
+  [1m[35mInvoice Load (0.4ms)[0m  SELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-05-29 07:00:00.000000' AND '2017-06-05 06:59:59.999999')
+  [1m[36mInvoice Load (0.9ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-05-29 07:00:00.000000' AND '2017-06-05 06:59:59.999999')  ORDER BY "invoices"."delivery_date" ASC, "invoices"."desc" ASC[0m
+PG::UndefinedColumn: ERROR:  column invoices.desc does not exist
+LINE 1: ...99999')  ORDER BY "invoices"."delivery_date" ASC, "invoices"...
+                                                             ^
+: SELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-05-29 07:00:00.000000' AND '2017-06-05 06:59:59.999999')  ORDER BY "invoices"."delivery_date" ASC, "invoices"."desc" ASC
+  [1m[35mInvoice Load (0.6ms)[0m  SELECT "invoices".* FROM "invoices" WHERE ("invoices"."delivery_date" BETWEEN '2017-05-29 07:00:00.000000' AND '2017-06-05 06:59:59.999999')  ORDER BY "invoices"."delivery_date" ASC
+
+
+Started GET "/invoices/new" for 127.0.0.1 at 2017-06-01 17:54:54 -0700
+Processing by InvoicesController#new as HTML
+  Rendered invoices/_form.html.erb (10.3ms)
+  Rendered invoices/new.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 61ms (Views: 60.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/invoices/34" for 127.0.0.1 at 2017-06-01 17:54:58 -0700
+Processing by InvoicesController#show as HTML
+  Parameters: {"id"=>"34"}
+  [1m[35mInvoice Load (1.2ms)[0m  SELECT  "invoices".* FROM "invoices" WHERE "invoices"."id" = $1 LIMIT 1  [["id", 34]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "invoices".* FROM "invoices" WHERE "invoices"."id" = $1 LIMIT 1[0m  [["id", "34"]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 1.2ms)
+
+NoMethodError (undefined method `split' for nil:NilClass):
+  app/controllers/invoices_controller.rb:93:in `decode_signature'
+  app/controllers/invoices_controller.rb:14:in `show'
+
+
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.4ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (61.3ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (4.6ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (5.1ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (49.3ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/jared/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (77.8ms)

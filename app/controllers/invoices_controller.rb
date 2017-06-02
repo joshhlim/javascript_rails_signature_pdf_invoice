@@ -11,7 +11,7 @@ class InvoicesController < ApplicationController
   # GET /invoices/1.json
   def show
     @invoice = Invoice.find(params[:id])
-    @sig = StringIO.new(Base64.decode64(@invoice.signature.split(',')[1]))
+    @sig = decode_signature(@invoice.signature)
 
     respond_to do |format|
       format.html
@@ -89,4 +89,7 @@ class InvoicesController < ApplicationController
       params.require(:invoice).permit(:amount, :user_id, :signature)
     end
 
+    def decode_signature(encoded_sig)
+      StringIO.new(Base64.decode64(encoded_sig.split(',')[1]))
+    end
 end
