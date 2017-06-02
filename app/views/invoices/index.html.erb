@@ -2,25 +2,43 @@
 
 <h1>Listing Invoices</h1>
 
-<table>
-  <thead>
+<div class="dropdown-form">
+    <%= form_tag invoices_path, method: :get do %>
+      <label for="list">View:</label>
+    <select name="day" class="dropdown-form">
+      <option>Current Week</option>
+      <option>Monday</option>
+      <option>Tuesday</option>
+      <option>Wednesday</option>
+      <option>Thursday</option>
+      <option>Friday</option>
+      <option>All Invoices</option>
+      <option>Undelivered</option>
+      <input type="submit">
+    </select>
+  <% end %>
+</div>
+
+<table class="invoices-table">
+  <thead class="invoices-table">
     <tr>
-      <th>Amount</th>
-      <th>Ends in</th>
-      <th>Purchaser</th>
-      <th>Purchase Date</th>
-      <th colspan="3"></th>
+      <th class="invoices-table">Id</th>
+      <th class="invoices-table">Customer</th>
+      <th class="invoices-table">Date</th>
+      <th class="invoices-table">Address</th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="invoices-table">
     <% @invoices.each do |invoice| %>
       <tr>
-        <td><%= number_to_currency(invoice.amount) %></td>
-        <td><%= invoice.user.name %></td>
-        <td><%= invoice.created_at.strftime("%B %d, %Y") %></td>
-        <td><%= link_to 'Show', invoice %></td>
-        <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
+        <td><%= invoice.id %></td>
+        <td><%= invoice.customer %></td>
+        <td><%= invoice.address %></td>
+        <td><%= invoice.delivery_date.strftime("%B %d, %Y") %></td>
+        <td> | </td>
+        <td><%= link_to 'Show', invoice %> | </td>
+        <td><%= link_to 'Edit', edit_invoice_path(invoice) %> | </td>
         <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
