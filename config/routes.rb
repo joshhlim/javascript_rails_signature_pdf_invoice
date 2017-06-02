@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   resources :invoices
   resources :users
 
+  # @invoice = Invoice.find(params[:id])
+
+  # if @invoice.signature
+  #   get 'invoices#show' + '.pdf'
+  # end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

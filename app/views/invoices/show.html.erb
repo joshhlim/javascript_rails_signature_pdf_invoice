@@ -20,6 +20,7 @@
 </p>
 
 <% if !@invoice.signature %>
-<%= link_to 'Sign', edit_invoice_path(@invoice) %> |
+<%= link_to 'Sign For', edit_invoice_path(@invoice) %> |
 <% end %>
+<%= link_to 'PDF Invoice', "/invoices/#{@invoice.id}.pdf" %>
 <%= link_to 'Back', invoices_path %>
