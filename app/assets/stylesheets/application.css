@@ -62,14 +62,90 @@ body {
   h1 {
     font-size: 1.2em;
   }
+
+  h1.center{
+    font-size: 2em;
+  }
+
+  .search_button, .dropdown-form{
+    font-size: 180%;
+  }
+
+  thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  td{
+    font-size: 1.2em;
+  }
+
+  .invoices-table a {
+    font-size: 1.5em;
+  }
+
+  .signature_pad_body canvas{
+    height: 100vh; 
+    width: 100vw;
+    margin-left: 40%;
+  }
+
+  .edit_invoice p{
+   color: white;
+  }
 }
 
 @media only screen and (max-height: 700px) and (orientation: landscape) {
+  a{
+    font-size: 2em;
+  }
+
+  p{
+    font-size: 1.5em;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .text-muted{
+    font-size: 1.5em;
+  }
+
   .signature_pad_save, .signature_pad_clear{
     margin-left: 10%;
     font-size: 200%;
   }
+
+  .search_button, .dropdown-form{
+    font-size: 140%;
+  }
+
   .signature_pad_footer{
     text-align: center;
+  }
+
+  .signature_pad_body canvas{
+    height: 45vh; 
+    width: 80vw;
+    margin-left: 15%;
+  }
+
+  .edit_invoice p{
+   color: white;
+  }
+
+  .center a{
+    font-size: 200%;
+  }
+
+  .invoices-table a {
+    font-size: 1.3em;
+  }
+
+  .invoices-table td{
+    font-size: 1.1em;
   }
 }
