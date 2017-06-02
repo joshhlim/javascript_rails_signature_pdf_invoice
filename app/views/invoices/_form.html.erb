@@ -21,15 +21,13 @@
     <%= f.label :customer, "Name On Account" %><br>
     <%= f.text_field :customer %>
   </div>
+  <div>
+    <%= f.label :delivery_date %><br>
+    <%= f.text_field :delivery_date %>
+  </div>
 
-  <%= f.input_field :signature, as: :hidden, class: 'signature_pad_input' %>
-  <div class="signature_pad text-center">
-    <div class="signature_pad_body">
-      <canvas></canvas>
-    </div>
-    <div class="signature_pad_footer">
-      <div class="text-muted">Sign above</div>
-      <button class="signature_pad_clear">Clear</button>
+  
+    <div class="submit_button">
       <%= f.button :submit, "Save", class: "signature_pad_save" %>
     </div>
   </div>

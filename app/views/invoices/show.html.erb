@@ -1,14 +1,31 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Invoice #<%= @invoice.id %></h1>
+
+<p>
+	<strong>Customer:</strong>
+	<%= @invoice.customer %>
+</p>
 <p>
   <strong>Amount:</strong>
   <%= number_to_currency(@invoice.amount) %>
 </p>
-
 <p>
-  <strong>Signed on <%= @invoice.created_at.strftime("%B %d, %Y") %>:</strong>
-  <%= image_tag @invoice.signature %>
+	<strong>Delivery Date:</strong>
+	<%= @invoice.delivery_date.strftime("%B %d, %Y") %>
+</p>
+<p>
+  <strong>Delivery Address:</strong>
+  <%= @invoice.address %>
+</p>
+<p>
+	<% if @invoice.signature %>
+	<%= image_tag @invoice.signature %>
+	<% end %>
 </p>
 
-<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
-<%= link_to 'Back', invoices_path %>
+<% if !@invoice.signature %>
+<%= link_to 'Sign For', edit_invoice_path(@invoice) %> |
+<% end %>
+<%= link_to 'PDF Invoice', "/invoices/#{@invoice.id}.pdf" %>
+<%= link_to 'Back', :back %>

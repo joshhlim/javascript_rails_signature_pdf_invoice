@@ -1,8 +1,54 @@
-<h1 class="center">Edit an Order</h1>
+<h1 class="center">Sign for Invoice #<%= @invoice.id %></h1>
 
-<%= render 'form' %>
+<div class="flex-container">
+
+<%= simple_form_for(@invoice) do |f| %>
+  <% if @invoice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+      <ul>
+      <% @invoice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <strong>Customer:</strong>
+    <%= @invoice.customer %>
+  </p>
+  <p>
+    <strong>Amount:</strong>
+    <%= number_to_currency(@invoice.amount) %>
+  </p>
+  <p>
+    <strong>Delivery Date:</strong>
+    <%= @invoice.delivery_date.strftime("%B %d, %Y") %>
+  </p>
+  <p>
+    <strong>Delivery Address:</strong>
+    <%= @invoice.address %>
+  </p>
+
+  <%= f.input_field :signature, as: :hidden, class: 'signature_pad_input' %>
+  <div class="signature_pad text-center">
+    <div class="signature_pad_body">
+      <canvas></canvas>
+    </div>
+    <div class="signature_pad_footer">
+      <div class="text-muted">Sign above</div>
+      <button class="signature_pad_clear">Clear</button>
+      <%= f.button :submit, "Save", class: "signature_pad_save" %>
+    </div>
+  </div>
+<% end %>
+
+</div>
+
 
 <div class="center">
 <%= link_to 'Show', @invoice %> |
-<%= link_to 'Back', invoices_path %>
+<%= link_to 'Back', :back %>
 </div>

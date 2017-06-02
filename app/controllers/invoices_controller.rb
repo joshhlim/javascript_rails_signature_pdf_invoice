@@ -4,11 +4,11 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    puts "params are #{params}"
     if params[:day]
-      @invoices = set_invoices(params[:day])
+      @day = params[:day]
+      @invoices = set_invoices(@day)
     else
-      @invoices = Invoice.all
+      @invoices = Invoice.not_delivered.this_week
     end
   end
 
@@ -16,7 +16,9 @@ class InvoicesController < ApplicationController
   # GET /invoices/1.json
   def show
     @invoice = Invoice.find(params[:id])
-    @sig = decode_signature(@invoice.signature)
+    if @invoice.signature
+      @sig = decode_signature(@invoice.signature)
+    end
 
     respond_to do |format|
       format.html
@@ -46,7 +48,7 @@ class InvoicesController < ApplicationController
   def create
     @invoice = Invoice.new(invoice_params)
 
-    @invoice.assign_attributes(user: User.find_by_name(invoice_params[:user_id]))
+    # @invoice.assign_attributes()
 
     respond_to do |format|
       if @invoice.save
@@ -63,7 +65,8 @@ class InvoicesController < ApplicationController
   # PATCH/PUT /invoices/1.json
   def update
     respond_to do |format|
-      if @invoice.update(invoice_params)
+      if @invoice.update(signature_params)
+        @invoice.update_attributes(delivered: true)
         format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
         format.json { render :show, status: :ok, location: @invoice }
       else
@@ -91,16 +94,19 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      # params.require(:invoice).permit(:amount, :user_id, :signature)
-      params.require(:invoice).permit(:amount)
+      params.require(:invoice).permit(:amount, :delivery_date, :customer, :address, :signature)
+    end
+
+    def signature_params
+      params.require(:invoice).permit(:signature)
     end
 
     def decode_signature(encoded_sig)
       StringIO.new(Base64.decode64(encoded_sig.split(',')[1]))
     end
 
-    def set_invoices(day)
-      case day
+    def set_invoices(selection)
+      case selection
         when "Current Week"
           Invoice.not_delivered.this_week
         when "Monday"
