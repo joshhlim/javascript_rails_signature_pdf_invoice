@@ -17,8 +17,9 @@ class InvoicesController < ApplicationController
   def show
     @invoice = Invoice.find(params[:id])
     if @invoice.signature
-      @sig = StringIO.new(Base64.decode64(@invoice.signature.split(',')[1]))
+      @sig = decode_signature(@invoice.signature)
     end
+
     respond_to do |format|
       format.html
       format.json
@@ -100,6 +101,10 @@ class InvoicesController < ApplicationController
       params.require(:invoice).permit(:signature)
     end
 
+    def decode_signature(encoded_sig)
+      StringIO.new(Base64.decode64(encoded_sig.split(',')[1]))
+    end
+
     def set_invoices(selection)
       case selection
         when "Current Week"
@@ -120,5 +125,4 @@ class InvoicesController < ApplicationController
           Invoice.not_delivered
         end
       end
-
 end

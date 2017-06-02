@@ -57,3 +57,19 @@ body {
   border: dotted #444;
   background: #CCCCCC;
 }
+
+@media only screen and (max-height: 700px) and (orientation: portrait) {
+  h1 {
+    font-size: 1.2em;
+  }
+}
+
+@media only screen and (max-height: 700px) and (orientation: landscape) {
+  .signature_pad_save, .signature_pad_clear{
+    margin-left: 10%;
+    font-size: 200%;
+  }
+  .signature_pad_footer{
+    text-align: center;
+  }
+}
