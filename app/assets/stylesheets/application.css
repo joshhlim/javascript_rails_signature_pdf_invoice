@@ -152,10 +152,24 @@ body {
   }
 
   .invoices-table td{
-    font-size: 1.1em;
+    font-size: 1.3em;
   }
 
   .invoices-table{
     text-align: center;
+  }
+
+  .new-invoice{
+    text-align: center;
+  }
+
+  .invoices-header{
+    text-align: center;
+  }
+
+  thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
   }
 }

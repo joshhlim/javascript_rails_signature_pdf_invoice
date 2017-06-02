@@ -1,10 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<% if @day %>
-  <h1>Listing Invoices for <%= @day %></h1>
-<% else %>
-  <h1>Listing Invoices for Week of <%= Time.now.beginning_of_week.strftime("%B %d, %Y") %></h1>
-<% end %>
+<div class='invoices-header'>
+  <% if @day %>
+    <h1>Listing Invoices for <%= @day %></h1>
+  <% else %>
+    <h1>Listing Invoices for Week of <%= Time.now.beginning_of_week.strftime("%B %d, %Y") %></h1>
+  <% end %>
+</div>
 
 
 <div class="dropdown-form">
@@ -53,5 +55,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Invoice', new_invoice_path %>
+<div class='new-invoice'>
+  <%= link_to 'New Invoice', new_invoice_path %>
+</div>
