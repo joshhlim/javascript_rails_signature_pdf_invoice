@@ -50,7 +50,7 @@
           <td><%= link_to "#{invoice.id}", invoice %></td>
           <td><%= invoice.customer %></td>
           <td><%= invoice.address %></td>
-          <td><%= invoice.delivery_date.strftime("%B %d, %Y") %></td>
+          <td><%= invoice.delivery_date.strftime("%B %d, %Y") if invoice.delivery_date %></td>
           <td><% if !invoice.signature %>
             <%= link_to 'Sign For', edit_invoice_path(invoice) %>
           <% else %>
