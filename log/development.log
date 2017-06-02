@@ -1145,3 +1145,11 @@ Processing by InvoicesController#index as HTML
   [1m[35mInvoice Load (0.6ms)[0m  SELECT "invoices".* FROM "invoices"
   Rendered invoices/index.html.erb within layouts/application (20.6ms)
 Completed 200 OK in 278ms (Views: 264.6ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/" for ::1 at 2017-06-01 18:20:02 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by InvoicesController#index as HTML
+  [1m[35mInvoice Load (0.7ms)[0m  SELECT "invoices".* FROM "invoices"
+  Rendered invoices/index.html.erb within layouts/application (33.3ms)
+Completed 200 OK in 293ms (Views: 278.5ms | ActiveRecord: 2.9ms)
