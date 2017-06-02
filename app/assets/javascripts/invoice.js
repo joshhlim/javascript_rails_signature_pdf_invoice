@@ -1,6 +1,6 @@
 var ready = function() {
 
-    $(document).on("click", "tr[data-link]", function() {
+    $(document).on("click", "td[data-link]", function() {
         window.location = $(this).data('link');
     });
 
