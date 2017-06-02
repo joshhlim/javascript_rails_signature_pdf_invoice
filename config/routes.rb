@@ -1,18 +1,5 @@
 Rails.application.routes.draw do
-  get 'welcome/index', to: 'welcome#index'
-
-  root to: 'welcome#index'
-
-  get 'welcome/monday', to: 'welcome#monday'
-
-  get 'welcome/tuesday', to: 'welcome#tuesday'
-
-  get 'welcome/wednesday', to: 'welcome#wednesday'
-
-  get 'welcome/thursday', to: 'welcome#thursday'
-
-  get 'welcome/friday', to: 'welcome#friday'
-
+  root to: 'invoices#index'
   resources :invoices
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
