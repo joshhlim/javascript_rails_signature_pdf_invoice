@@ -1,16 +1,17 @@
+
 <p id="notice"><%= notice %></p>
 
 <% if @day %>
-  <h1>Listing Invoices for <%= @day %></h1>
+  <h1 class="center">Listing Invoices by <%= @day %></h1>
 <% else %>
-  <h1>Listing Invoices for Week of <%= Time.now.beginning_of_week.strftime("%B %d, %Y") %></h1>
+  <h1 class="center">Listing Invoices for Week of <%= Time.now.beginning_of_week.strftime("%B %d, %Y") %></h1>
 <% end %>
 
-
-<div class="dropdown-form">
-    <%= form_tag invoices_path, method: :get do %>
-      <label for="list">View:</label>
+<div class="dropdown-form center">
+  <%= form_tag invoices_path, id: "hi", method: :get do %>
+      <!-- <label for="list">List by:</label> -->
     <select name="day" class="dropdown-form">
+      <option>List By:</option>
       <option>Current Week</option>
       <option>Monday</option>
       <option>Tuesday</option>
@@ -19,39 +20,41 @@
       <option>Friday</option>
       <option>All Invoices</option>
       <option>Undelivered</option>
-      <input type="submit" value="Search">
+      <input type="submit" value="<%= '&#128269;'.html_safe %>">
     </select>
   <% end %>
+  <%= link_to 'New Invoice', new_invoice_path %>
 </div>
 
-<table class="invoices-table">
-  <thead class="invoices-table">
-    <tr>
-      <th class="invoices-table">Id</th>
-      <th class="invoices-table">Customer</th>
-      <th class="invoices-table">Address</th>
-      <th class="invoices-table">Date</th>
-    </tr>
-  </thead>
-
-  <tbody class="invoices-table">
-    <% @invoices.each do |invoice| %>
+<div class="flex-column invoices-table">
+  <table class="invoices-table">
+    <thead class="invoices-table">
       <tr>
-        <td><%= invoice.id %></td>
-        <td><%= invoice.customer %></td>
-        <td><%= invoice.address %></td>
-        <td><%= invoice.delivery_date.strftime("%B %d, %Y") %></td>
-        <td> | </td>
-        <td><%= link_to 'Show', invoice %></td>
-        <% if !invoice.signature %>
-        <td> | <%= link_to 'Sign For', edit_invoice_path(invoice) %></td>
-        <% end %>
-        <!-- <td><%#= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        <th class="invoices-table">#</th>
+        <th class="invoices-table"><%= '&#128587;'.html_safe %> Customer</th>
+        <th class="invoices-table"><%= '&#127968;'.html_safe %> Address</th>
+        <th class="invoices-table"><%= '&#128197;'.html_safe %> Date</th>
+        <th class="invoices-table"><%= '&#128230;'.html_safe %></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody class="invoices-table">
+      <% @invoices.each do |invoice| %>
+        <tr data-link="<%= invoice_path(invoice) %>">
+          <td><%= link_to "#{invoice.id}", invoice %></td>
+          <td><%= invoice.customer %></td>
+          <td><%= invoice.address %></td>
+          <td><%= invoice.delivery_date.strftime("%B %d, %Y") %></td>
+          <td><% if !invoice.signature %>
+            <%= link_to 'Sign For', edit_invoice_path(invoice) %>
+          <% else %>
+            <%= '&#10003;'.html_safe %>
+          <% end %></td>
+          <!-- <td><%#= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<%= link_to 'New Invoice', new_invoice_path %>
+

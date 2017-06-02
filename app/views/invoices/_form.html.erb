@@ -14,20 +14,24 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :customer, "Name On Account" %><br>
+    <%= f.text_field :customer %>
+  </div>
+  <div class="field">
     <%= f.label :amount %><br>
     <%= f.number_field :amount %>
   </div>
   <div class="field">
-    <%= f.label :customer, "Name On Account" %><br>
-    <%= f.text_field :customer %>
-  </div>
-  <div>
     <%= f.label :delivery_date %><br>
     <%= f.text_field :delivery_date %>
   </div>
+  <div class="field">
+    <%= f.label :address, "Delivery Address" %><br>
+    <%= f.text_field :address %>
+  </div>
 
-  
-    <div class="submit_button">
+
+    <div class="submit_button field">
       <%= f.button :submit, "Save", class: "signature_pad_save" %>
     </div>
   </div>

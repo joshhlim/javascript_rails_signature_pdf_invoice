@@ -20,8 +20,19 @@ body {
     margin: 0;
 }
 .flex-container {
-    height: 90%;
-    padding: 0;
+  margin-top: 50px;
+    padding: 50px;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex-column {
+    padding: 10px;
     margin: 0;
     display: -webkit-box;
     display: -moz-box;
@@ -72,4 +83,29 @@ body {
   .signature_pad_footer{
     text-align: center;
   }
+}
+
+div.dropdown-form * {
+  padding: 10px 10px;
+}
+
+td, th {
+  padding: 5px 20px;
+  text-align: center;
+}
+
+tr:hover {
+  background-color: tan;
+}
+
+.field {
+  padding-top: 10px
+}
+
+.field:hover {
+  background-color: beige;
+}
+
+a:link {
+  text-decoration: none;
 }

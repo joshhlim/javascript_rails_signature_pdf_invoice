@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Invoice #<%= @invoice.id %></h1>
+<h1 class="center">Invoice #<%= @invoice.id %></h1>
 
 <p>
 	<strong>Customer:</strong>
@@ -27,6 +27,6 @@
 <% if !@invoice.signature %>
 <%= link_to 'Sign For', edit_invoice_path(@invoice) %> |
 <% end %>
-<%= link_to 'PDF Invoice', "/invoices/#{@invoice.id}.pdf" %> | 
-<%= link_to 'Back', :back %> | 
+<%= link_to 'PDF Invoice', "/invoices/#{@invoice.id}.pdf" %> |
+<%= link_to 'Back', :back %> |
 <%= link_to 'Home', invoices_path %>
