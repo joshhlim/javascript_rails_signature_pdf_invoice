@@ -1,14 +1,18 @@
 <p id="notice"><%= notice %></p>
 
+
+<p>
+	<strong>Customer:</strong>
+	<%= @invoice.customer %>
+</p>
 <p>
   <strong>Amount:</strong>
   <%= number_to_currency(@invoice.amount) %>
 </p>
-
 <p>
-  <strong>Signed on <%= @invoice.created_at.strftime("%B %d, %Y") %>:</strong>
-  <%= image_tag @invoice.signature %>
+	<strong>Delivery Date:</strong>
+	<%= @invoice.delivery_date.strftime("%B %d, %Y") %>
 </p>
 
-<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
+<%= link_to 'Sign', edit_invoice_path(@invoice) %> |
 <%= link_to 'Back', invoices_path %>
