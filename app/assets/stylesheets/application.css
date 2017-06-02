@@ -18,7 +18,7 @@ html, body {
 }
 body {
     margin: 0;
-    font: 22px Arial;
+    font: 22px Garamond;
 }
 .flex-container {
   margin-top: 50px;
@@ -71,7 +71,7 @@ body {
 }
 
 @media only screen and (max-height: 700px) and (orientation: portrait) {
-  h1 {
+  /*h1 {
     font-size: 1.2em;
   }
 
@@ -105,23 +105,32 @@ body {
 
   .edit_invoice p{
    color: white;
+  }/
+*/
+  img {
+    max-width: 75%;
+    height: auto;
   }
 }
 
 @media only screen and (max-height: 700px) and (orientation: landscape) {
-  a{
+ /* a{
     font-size: 2em;
   }
 
   p{
     font-size: 1.5em;
-  }
+  }*/
 
   img {
-    max-width: 45%;
+    max-width: 75%;
     height: auto;
   }
 
+  body {
+    max-width: 100%;
+  }
+/*
   .show{
     text-align: center;
   }
@@ -183,11 +192,11 @@ body {
     position: absolute;
     top: -9999px;
     left: -9999px;
-  }
+  }*/
 }
 
 #nav-bar a:link{
-  font: bold 25px Arial;
+  font: bold 25px Garamond;
   word-spacing: 5px;
   text-decoration: none;
   background-color: #EEEEEE;
@@ -200,7 +209,7 @@ body {
 }
 
 .signature_pad_clear, .signature_pad_save {
-  font: bold 25px Arial;
+  font: bold 25px Garamond;
   word-spacing: 5px;
   text-decoration: none;
   background-color: #EEEEEE;
@@ -213,7 +222,7 @@ body {
 }
 
 #details {
-  font: 22px Arial;
+  font: 22px Garamond;
 }
 
 div.dropdown-form * {
