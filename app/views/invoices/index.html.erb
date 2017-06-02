@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Invoices</h1>
+
+<div class="dropdown-form">
+    <%= form_tag invoices_path, method: :get do %>
+      <label for="list">View:</label>
+    <select name="day" class="dropdown-form">
+      <option>Current Week</option>
+      <option>Monday</option>
+      <option>Tuesday</option>
+      <option>Wednesday</option>
+      <option>Thursday</option>
+      <option>Friday</option>
+      <option>All Invoices</option>
+      <option>Undelivered</option>
+      <input type="submit">
+    </select>
+  <% end %>
+</div>
+
+<table class="invoices-table">
+  <thead class="invoices-table">
+    <tr>
+      <th class="invoices-table">Id</th>
+      <th class="invoices-table">Customer</th>
+      <th class="invoices-table">Date</th>
+      <th class="invoices-table">Address</th>
+    </tr>
+  </thead>
+
+  <tbody class="invoices-table">
+    <% @invoices.each do |invoice| %>
+      <tr>
+        <td><%= invoice.id %></td>
+        <td><%= invoice.customer %></td>
+        <td><%= invoice.address %></td>
+        <td><%= invoice.delivery_date.strftime("%B %d, %Y") %></td>
+        <td> | </td>
+        <td><%= link_to 'Show', invoice %> | </td>
+        <td><%= link_to 'Edit', edit_invoice_path(invoice) %> | </td>
+        <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Invoice', new_invoice_path %>
