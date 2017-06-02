@@ -4,11 +4,11 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    puts params
     if params[:day]
-      @invoices = set_invoices(params[:day])
+      @day = params[:day]
+      @invoices = set_invoices(@day)
     else
-      @invoices = Invoice.all
+      @invoices = Invoice.not_delivered.this_week
     end
   end
 
@@ -95,8 +95,8 @@ class InvoicesController < ApplicationController
       params.require(:invoice).permit(:amount)
     end
 
-    def set_invoices(day)
-      case day
+    def set_invoices(selection)
+      case selection
         when "Current Week"
           Invoice.not_delivered.this_week
         when "Monday"
