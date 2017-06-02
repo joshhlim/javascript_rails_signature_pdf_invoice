@@ -4,7 +4,12 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
+    puts params
+    if params[:day]
+      @invoices = set_invoices(params[:day])
+    else
+      @invoices = Invoice.all
+    end
   end
 
   # GET /invoices/1
@@ -86,7 +91,29 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:amount, :user_id, :signature)
+      # params.require(:invoice).permit(:amount, :user_id, :signature)
+      params.require(:invoice).permit(:amount)
     end
+
+    def set_invoices(day)
+      case day
+        when "Current Week"
+          Invoice.not_delivered.this_week
+        when "Monday"
+          Invoice.not_delivered.this_monday
+        when "Tuesday"
+          Invoice.not_delivered.this_tuesday
+        when "Wednesday"
+          Invoice.not_delivered.this_wednesday
+        when "Thursday"
+          Invoice.not_delivered.this_thursday
+        when "Friday"
+          Invoice.not_delivered.this_friday
+        when "All Invoices"
+          Invoice.all
+        when "Undelivered"
+          Invoice.not_delivered
+        end
+      end
 
 end

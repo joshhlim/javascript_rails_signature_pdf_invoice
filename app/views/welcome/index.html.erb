@@ -1,18 +1,20 @@
 <h1><%#= CURRENT WEEK %></h1>
 
 <div class="dropdown-form">
-  <form method="get" action="/welcome/index">
+    <%= form_tag invoices_path method: :get do %>
       <label for="list">View:</label>
-    <select class="dropdown-form">
+    <select name="day" class="dropdown-form">
       <option>Current Week</option>
       <option>Monday</option>
       <option>Tuesday</option>
       <option>Wednesday</option>
       <option>Thursday</option>
       <option>Friday</option>
-<!--       <option>All Upcoming</option> -->
+      <option>All Invoices</option>
+      <option>Undelivered</option>
+      <input type="submit">
     </select>
-  </form>
+  <% end %>
 </div>
 
 <div class="invoices-table">
