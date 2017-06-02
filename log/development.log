@@ -1,0 +1,52 @@
+
+
+Started GET "/invoices/1.pdf" for ::1 at 2017-06-02 09:02:52 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by InvoicesController#show as PDF
+  Parameters: {"id"=>"1"}
+  [1m[35mInvoice Load (0.9ms)[0m  SELECT  "invoices".* FROM "invoices" WHERE "invoices"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "invoices".* FROM "invoices" WHERE "invoices"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered invoices/show.pdf.prawn (535.0ms)
+Completed 200 OK in 574ms (Views: 546.0ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/invoices/1" for ::1 at 2017-06-02 09:02:54 -0700
+Processing by InvoicesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mInvoice Load (0.9ms)[0m  SELECT  "invoices".* FROM "invoices" WHERE "invoices"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "invoices".* FROM "invoices" WHERE "invoices"."id" = $1 LIMIT 1[0m  [["id", "1"]]
+  Rendered invoices/show.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 238ms (Views: 233.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/application.self-501cd49c70efd61be32b5a807c7ee20f4b3b6a3ade3539825c63c3e25afea7ac.css?body=1" for ::1 at 2017-06-02 09:02:55 -0700
+
+
+Started GET "/invoices" for ::1 at 2017-06-02 09:02:56 -0700
+Processing by InvoicesController#index as HTML
+  [1m[35mInvoice Load (0.3ms)[0m  SELECT "invoices".* FROM "invoices" WHERE "invoices"."delivered" = $1 AND ("invoices"."delivery_date" BETWEEN '2017-05-29 07:00:00.000000' AND '2017-06-05 06:59:59.999999')  [["delivered", "f"]]
+  Rendered invoices/index.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 30ms (Views: 28.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/invoices" for ::1 at 2017-06-02 09:37:17 -0700
+Processing by InvoicesController#index as HTML
+  [1m[36mInvoice Load (0.3ms)[0m  [1mSELECT "invoices".* FROM "invoices" WHERE "invoices"."delivered" = $1 AND ("invoices"."delivery_date" BETWEEN '2017-05-29 07:00:00.000000' AND '2017-06-05 06:59:59.999999')[0m  [["delivered", "f"]]
+  Rendered invoices/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 19ms (Views: 17.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/invoices?utf8=%E2%9C%93&day=All+Invoices" for ::1 at 2017-06-02 09:37:20 -0700
+Processing by InvoicesController#index as HTML
+  Parameters: {"utf8"=>"✓", "day"=>"All Invoices"}
+  [1m[35mInvoice Load (1.2ms)[0m  SELECT "invoices".* FROM "invoices"
+  Rendered invoices/index.html.erb within layouts/application (43.3ms)
+Completed 200 OK in 64ms (Views: 62.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/invoices?utf8=%E2%9C%93&day=All+Invoices" for ::1 at 2017-06-02 09:37:48 -0700
+Processing by InvoicesController#index as HTML
+  Parameters: {"utf8"=>"✓", "day"=>"All Invoices"}
+  [1m[36mInvoice Load (1.0ms)[0m  [1mSELECT "invoices".* FROM "invoices"[0m
+  Rendered invoices/index.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 38ms (Views: 35.8ms | ActiveRecord: 1.0ms)
