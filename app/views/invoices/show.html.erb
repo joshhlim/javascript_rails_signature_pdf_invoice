@@ -13,7 +13,7 @@
   </p>
   <p class="center" id="details">
   	<strong>Delivery Date: </strong>
-  	<%= @invoice.delivery_date.strftime("%B %d, %Y") %>
+  	<%= @invoice.delivery_date.strftime("%B %d, %Y") if @invoice.delivery_date %>
   </p>
   <p class="center" id="details">
     <strong>Delivery Address: </strong>
