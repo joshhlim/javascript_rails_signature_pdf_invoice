@@ -1,1 +1,1 @@
-An Invoicing app built with user stories.
+An Invoicing App that allows delivery personnel to filter orders by day or week, view PDF invoice, and add a signature to that PDF invoice. Built with jQuery, JS, and Rails. Please check it out at: http://stevescoffee.herokuapp.com
