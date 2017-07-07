@@ -5,10 +5,10 @@ This is an invoicing app that allows users to sort upcoming deliveries by days o
 ## [View Demo and Documentation &rarr;](http://limhjosh.github.io)
 
 ### Each row lights up when hovered, and acts as a link. Sign For is a unique link:
-![](https://photos.google.com/share/AF1QipOCl1joe9pQtL3Sb91RpX7s-Ki6qOdqCUQ1IftxGxYEeF3duSs7n-IxTQ-oiLB79Q/photo/AF1QipM5TNgVn_7pbhcyslNcdWZoMdrmyWelanvebi3l?key=ckVNYURfZlRGWVlTbndlNHBlRTZaTmxYYkY5UVpB)
+![](https://image.ibb.co/bTOYZa/steves.png)
 
 ### The Sign For link takes you to the Signature Pad:
-![](https://lh3.googleusercontent.com/K6UWrkxTVgI5_jOhsKBh2mt4PYl6UuV38y9kkRwc8y4elxtLPr5XGyxd3mWBYIHdnh_gxNQs08Ks56YFUqs_XjlL4ms_6DHseEB_OHBb5Svchd4FY1a4KyFEnl0lWHQ7BviBFMKbcw8pLTyjizX7mf7HdC4OgR4TTgA-_3qMXBFdTxjPoCqhTLcBuzs9-EqoCXfca875_huVGz7I8lMMAfCvurLdeGSOceWe0lArnh013JflwoepuXKI--AqJ2jNzgCW1AuupPrLTBxTdXVfR0WdAV91AGmDe7uFn4kQfg1BMzvb5_1NH3pzlzIm2Zu0ET8ZfNZ8Iu0k-Kn2neqekw9qkCgbLHt-sh3jUC2cPF8TnG7NYPkW7vIHuyW-Cb81JLjQ4I3DxjtK1aujVWFtd6A-C0xGWZtesCWfTh14WfunUb-MRAn1DHvDifCTVupvPx_eB-aFNzLrLsHOD-m294tmBm9GCVfbNUEXEJxHoY2NzoNI_QzXm4bvuP-BhRaTR70TeDsrKNnq2Xi5CpNkTfG-5rniy6US4qpKhuMTnILuuMD5Jnn131CAy6mw4IvuG5sHAsAKhDwvHwErg5UjBKiHAY8G-Masfpr6kxTLMI-AnnblU10=w1411-h808-no)
+![](https://image.ibb.co/h1xGnv/sign.jpg)
 
 ### And you can view a PDF version of the invoice:
-![](https://lh3.googleusercontent.com/zFv52p_bQA_zZcbL57R2KOA2W654LK3q_Y5bSm4BmtxD0moIASf_Iz7iOCmn0CXHV1cwyJ0iB638hTWFhtpGZ6STfUT2t_l6oW2OKOAba__35TDy4z5UZIqXgfQH9gIlK6SwLx8oeoZY0Uefta-2P-IVzh1fK4gA72AvKx8qpuDZA8ADnxvyLGHnzIqO1A2oQpMzQz1u5LalBp65l6XErhWR9tseGUSotxT852g_LHEaRKjs_LqO3n4Xs2NnAVJe-3aFkvT2muRWt5QM9wolQTpKXLjeKtDgxpbzCF4WfOAvAOzyaKA6HbtDnf98sS0tJtfZi0HN0WsZs264i7y9RDJoqrtylcPDE4hP4xaf8LZUkSsz-FXMuMguemSjbvbMDy5FYIXiSsam5sVNVMe_ioksq_2PB7Phmvu_cKa2opCoZrXLgSwPOWKZEfsOvAnOJbHnXhOq_Cy0UDGzRIrhuwcqRpNjpQqCKv9CWaVou9AhDVGkV1wSKwN2_-MtZMzYXKNX79ay-XQ_pUPxJNJkIwjGJvW_B5aWt3xmAqXPAS-Bhcaj5OEQJJR08t6oDGzoOdb0h68lscPCNFaJWqiYbZsX6HnKt7go66YdboblPuChwzhiu-MjkkNVY8zIjFQCWdKZABhggASiWroiEMy9JGE1xKi_e9WwgqooYSu2wh9o=w590-h827-no)
+![](https://image.ibb.co/goV2Sv/pdf.jpg)
