@@ -5,10 +5,10 @@ This is an invoicing app that allows users to sort upcoming deliveries by days o
 ## [View Demo and Documentation &rarr;](http://limhjosh.github.io)
 
 ### Each row lights up when hovered, and acts as a link. Sign For is a unique link:
-![](https://image.ibb.co/bTOYZa/steves.png)
+![](steves.png)
 
 ### The Sign For link takes you to the Signature Pad:
-![](https://image.ibb.co/h1xGnv/sign.jpg)
+![](sign.jpg)
 
 ### And you can view a PDF version of the invoice:
-![](https://image.ibb.co/goV2Sv/pdf.jpg)
+![](pdf.jpg)
